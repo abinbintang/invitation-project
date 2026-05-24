@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation — Amara & Julian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory:   #f9f5ee;
+      --cream:   #f0e9db;
+      --taupe:   #c2b49a;
+      --sand:    #a89070;
+      --brown:   #6b4f3a;
+      --ink:     #2c1f14;
+      --gold:    #b8965a;
+      --gold-lt: #d4b07a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 128px;
+    }
+
+    /* ── Section spacing ── */
+    section { padding: 80px 24px; }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    /* Decorative petal rings */
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--taupe);
+      opacity: .35;
+    }
+    .hero::before {
+      width: 560px; height: 560px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseRing 6s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      width: 760px; height: 760px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseRing 6s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes pulseRing {
+      from { transform: translate(-50%,-50%) scale(1);   opacity: .25; }
+      to   { transform: translate(-50%,-50%) scale(1.04); opacity: .45; }
+    }
+
+    /* Subtle radial glow */
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,150,90,.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .announce {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: .72rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 28px;
+      animation: fadeUp .9s ease both;
+    }
+
+    .couple-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.8rem, 10vw, 7.5rem);
+      line-height: 1;
+      color: var(--ink);
+      animation: fadeUp .9s .15s ease both;
+      letter-spacing: -.01em;
+    }
+
+    .couple-names em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .ampersand {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--taupe);
+      line-height: 1.4;
+      animation: fadeUp .9s .25s ease both;
+    }
+
+    .ornament {
+      display: block;
+      margin: 32px auto 28px;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      position: relative;
+      animation: fadeUp .9s .35s ease both;
+    }
+    .ornament::before, .ornament::after {
+      content: '◆';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: .45rem;
+      color: var(--gold);
+    }
+    .ornament::before { left: 50%; transform: translate(-50%,-50%); }
+
+    .hero-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--brown);
+      letter-spacing: .05em;
+      animation: fadeUp .9s .45s ease both;
+    }
+
+    .hero-location {
+      font-size: .75rem;
+      font-weight: 300;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: 10px;
+      animation: fadeUp .9s .55s ease both;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp .9s .9s ease both;
+      cursor: pointer;
+      opacity: .55;
+      transition: opacity .3s;
+    }
+    .scroll-cue:hover { opacity: 1; }
+    .scroll-cue span {
+      font-size: .65rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--sand);
+    }
+    .scroll-arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, transparent, var(--sand));
+      animation: scrollArrow 2s ease-in-out infinite;
+    }
+    @keyframes scrollArrow {
+      0%,100% { transform: scaleY(0); transform-origin: top; }
+      50%      { transform: scaleY(1); transform-origin: top; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────────
+       DIVIDER
+    ───────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 480px;
+      margin: 0 auto 60px;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--taupe));
+    }
+    .divider-line.right {
+      background: linear-gradient(90deg, var(--taupe), transparent);
+    }
+    .divider-diamond {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       COUNTDOWN
+    ───────────────────────────────────────── */
+    .countdown-section {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: .68rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 48px;
+    }
+
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 90px;
+    }
+
+    .countdown-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-top: 6px;
+    }
+
+    .countdown-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--taupe);
+      align-self: flex-start;
+      padding-top: 8px;
+      line-height: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       STORY
+    ───────────────────────────────────────── */
+    .story-section { text-align: center; max-width: 640px; margin: 0 auto; }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .story-text {
+      font-size: .95rem;
+      line-height: 1.95;
+      color: var(--brown);
+      font-weight: 300;
+    }
+
+    /* ─────────────────────────────────────────
+       DETAILS
+    ───────────────────────────────────────── */
+    .details-section {
+      background: var(--ink);
+      color: var(--ivory);
+    }
+
+    .details-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0 48px;
+      align-items: start;
+    }
+
+    .detail-block { text-align: center; }
+
+    .detail-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .detail-title {
+      font-family: 'Jost', sans-serif;
+      font-size: .65rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 16px;
+    }
+
+    .detail-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+      font-weight: 300;
+      color: var(--ivory);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .detail-sub {
+      font-size: .8rem;
+      color: var(--taupe);
+      font-weight: 200;
+      letter-spacing: .05em;
+      line-height: 1.8;
+    }
+
+    .detail-divider {
+      width: 1px;
+      background: rgba(194,180,154,.18);
+      align-self: stretch;
+    }
+
+    /* ─────────────────────────────────────────
+       PROGRAMME
+    ───────────────────────────────────────── */
+    .programme-section { text-align: center; }
+
+    .programme-list {
+      max-width: 480px;
+      margin: 0 auto;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .programme-item {
+      display: grid;
+      grid-template-columns: 90px 1px 1fr;
+      gap: 0 24px;
+      align-items: start;
+      padding: 20px 0;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .programme-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .prog-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--gold);
+      text-align: right;
+      padding-top: 2px;
+    }
+
+    .prog-line {
+      width: 1px;
+      background: var(--taupe);
+      opacity: .4;
+      align-self: stretch;
+      position: relative;
+    }
+    .prog-line::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translate(-50%, 0) rotate(45deg);
+      width: 5px; height: 5px;
+      background: var(--gold);
+    }
+
+    .prog-detail { text-align: left; padding-left: 4px; }
+
+    .prog-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .prog-desc {
+      font-size: .78rem;
+      color: var(--sand);
+      font-weight: 200;
+    }
+
+    /* ─────────────────────────────────────────
+       RSVP
+    ───────────────────────────────────────── */
+    .rsvp-section {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .rsvp-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--ivory);
+      border: 1px solid rgba(194,180,154,.5);
+      padding: 56px 48px;
+      position: relative;
+    }
+
+    /* Corner ornaments */
+    .rsvp-card::before,
+    .rsvp-card::after {
+      content: '';
+      position: absolute;
+      width: 28px; height: 28px;
+      border-color: var(--taupe);
+      border-style: solid;
+      opacity: .5;
+    }
+    .rsvp-card::before {
+      top: 14px; left: 14px;
+      border-width: 1px 0 0 1px;
+    }
+    .rsvp-card::after {
+      bottom: 14px; right: 14px;
+      border-width: 0 1px 1px 0;
+    }
+
+    .rsvp-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--sand);
+      margin-bottom: 32px;
+    }
+
+    .rsvp-form { display: flex; flex-direction: column; gap: 16px; }
+
+    .rsvp-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--taupe);
+      padding: 10px 0;
+      font-family: 'Jost', sans-serif;
+      font-size: .85rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .3s;
+      letter-spacing: .05em;
+    }
+    .rsvp-input::placeholder { color: var(--taupe); }
+    .rsvp-input:focus { border-color: var(--gold); }
+
+    .rsvp-radios {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .rsvp-radio {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      letter-spacing: .1em;
+      cursor: pointer;
+      color: var(--brown);
+    }
+    .rsvp-radio input { accent-color: var(--gold); width: 14px; height: 14px; }
+
+    .rsvp-btn {
+      margin-top: 12px;
+      background: var(--ink);
+      color: var(--ivory);
+      border: none;
+      padding: 14px 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: .7rem;
+      font-weight: 300;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .3s, color .3s;
+    }
+    .rsvp-btn:hover { background: var(--gold); color: var(--ink); }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: var(--taupe);
+      text-align: center;
+      padding: 56px 24px;
+    }
+
+    .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--ivory);
+      margin-bottom: 16px;
+    }
+
+    .footer-tag {
+      font-size: .65rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 32px;
+    }
+
+    .footer-hashtag {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .footer-copy {
+      font-size: .65rem;
+      letter-spacing: .15em;
+      opacity: .35;
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .details-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .detail-divider { display: none; }
+
+      .rsvp-card { padding: 40px 24px; }
+
+      .countdown-sep { display: none; }
+    }
+
+    /* ─────────────────────────────────────────
+       SCROLL FADE-IN
+    ───────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <p class="announce">Together with their families</p>
+
+      <h1 class="couple-names">
+        <em>Amara</em>
+        <span class="ampersand">&amp;</span>
+        Julian
+      </h1>
+
+      <span class="ornament"></span>
+
+      <p class="hero-date">Saturday, the Fourteenth of September, 2025</p>
+      <p class="hero-location">Villa Serenity — Lake Como, Italy</p>
+    </div>
+
+    <div class="scroll-cue" onclick="document.getElementById('countdown').scrollIntoView({behavior:'smooth'})">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ── COUNTDOWN ── -->
+  <section class="countdown-section" id="countdown">
+    <p class="section-label fade-in">Days Until We Say I Do</p>
+    <div class="countdown-grid fade-in">
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-days">--</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-sep">·</div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-hours">--</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-sep">·</div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-mins">--</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <div class="countdown-sep">·</div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-secs">--</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OUR STORY ── -->
+  <section style="text-align:center; padding:80px 24px;">
+    <div class="story-section">
+      <div class="divider fade-in">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line right"></div>
+      </div>
+      <h2 class="section-title fade-in">Our Story</h2>
+      <p class="story-text fade-in">
+        What began as a quiet conversation over coffee in a Florentine bookshop became
+        the adventure of a lifetime. Amara and Julian discovered in each other a rare
+        and beautiful thing — a kindred spirit, a steady hand, a home. Two years, four
+        continents, and one very patient dog later, Julian got down on one knee at
+        sunrise on the Amalfi Coast, and the answer was written long before the question.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── DETAILS ── -->
+  <section class="details-section">
+    <div class="details-inner">
+      <div class="detail-block fade-in">
+        <div class="detail-icon">⌖</div>
+        <p class="detail-title">The Ceremony</p>
+        <p class="detail-main">Villa Serenity<br>Lake Como</p>
+        <p class="detail-sub">
+          Via Bellaggio 12, Cernobbio<br>
+          4:00 in the afternoon<br>
+          Smart elegant attire
+        </p>
+      </div>
+
+      <div class="detail-divider"></div>
+
+      <div class="detail-block fade-in">
+        <div class="detail-icon">✦</div>
+        <p class="detail-title">The Reception</p>
+        <p class="detail-main">Terrace di<br>Bellagio</p>
+        <p class="detail-sub">
+          Via Lungo Lario Manzoni 22<br>
+          7:00 in the evening<br>
+          Dinner · Dancing · Joy
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROGRAMME ── -->
+  <section class="programme-section" style="padding:80px 24px;">
+    <p class="section-label fade-in">Order of the Day</p>
+    <h2 class="section-title fade-in">Programme</h2>
+    <ul class="programme-list">
+      <li class="programme-item">
+        <span class="prog-time">3:30 PM</span>
+        <div class="prog-line"></div>
+        <div class="prog-detail">
+          <p class="prog-name">Guest Arrival</p>
+          <p class="prog-desc">Welcome drinks on the lakeside terrace</p>
+        </div>
+      </li>
+      <li class="programme-item">
+        <span class="prog-time">4:00 PM</span>
+        <div class="prog-line"></div>
+        <div class="prog-detail">
+          <p class="prog-name">Wedding Ceremony</p>
+          <p class="prog-desc">Exchange of vows in the garden chapel</p>
+        </div>
+      </li>
+      <li class="programme-item">
+        <span class="prog-time">4:45 PM</span>
+        <div class="prog-line"></div>
+        <div class="prog-detail">
+          <p class="prog-name">Cocktail Hour</p>
+          <p class="prog-desc">Champagne, canapés &amp; photographs</p>
+        </div>
+      </li>
+      <li class="programme-item">
+        <span class="prog-time">7:00 PM</span>
+        <div class="prog-line"></div>
+        <div class="prog-detail">
+          <p class="prog-name">Dinner Reception</p>
+          <p class="prog-desc">Five-course dinner by Chef Moretti</p>
+        </div>
+      </li>
+      <li class="programme-item">
+        <span class="prog-time">10:00 PM</span>
+        <div class="prog-line"></div>
+        <div class="prog-detail">
+          <p class="prog-name">Dancing &amp; Celebration</p>
+          <p class="prog-desc">Live music until midnight</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── RSVP ── -->
+  <section class="rsvp-section">
+    <div class="rsvp-card fade-in">
+      <p class="section-label">Kindly Reply By August 1st</p>
+      <h2 class="section-title">RSVP</h2>
+      <p class="rsvp-subtitle">We hope to celebrate with you</p>
+
+      <div class="rsvp-form">
+        <input class="rsvp-input" type="text"  placeholder="Your Full Name" />
+        <input class="rsvp-input" type="email" placeholder="Email Address" />
+        <input class="rsvp-input" type="number" placeholder="Number of Guests" min="1" max="4" />
+
+        <div class="rsvp-radios">
+          <label class="rsvp-radio">
+            <input type="radio" name="attend" value="yes" checked />
+            Joyfully Accepts
+          </label>
+          <label class="rsvp-radio">
+            <input type="radio" name="attend" value="no" />
+            Regretfully Declines
+          </label>
+        </div>
+
+        <textarea class="rsvp-input" rows="3" placeholder="Dietary requirements or message…" style="resize:none;"></textarea>
+
+        <button class="rsvp-btn" onclick="handleRSVP(event)">Send Reply</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p class="footer-names">Amara &amp; Julian</p>
+    <p class="footer-tag">September 14 · 2025 · Lake Como</p>
+    <p class="footer-hashtag">#AmaraAndJulianForever</p>
+    <div class="divider" style="max-width:240px; margin: 0 auto 24px;">
+      <div class="divider-line" style="background:linear-gradient(90deg,transparent,rgba(194,180,154,.3))"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line right" style="background:linear-gradient(90deg,rgba(194,180,154,.3),transparent)"></div>
+    </div>
+    <p class="footer-copy">Crafted with love · All rights reserved</p>
+  </footer>
+
+  <script>
+    // ── Countdown ──
+    const weddingDate = new Date('2025-09-14T16:00:00');
+
+    function updateCountdown() {
+      const now  = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent  = '0';
+        document.getElementById('cd-hours').textContent = '0';
+        document.getElementById('cd-mins').textContent  = '0';
+        document.getElementById('cd-secs').textContent  = '0';
+        return;
+      }
+
+      const days  = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins  = Math.floor((diff % 3600000)  / 60000);
+      const secs  = Math.floor((diff % 60000)    / 1000);
+
+      document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+      document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+      document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ── Scroll fade-in (IntersectionObserver) ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // stagger programme items
+          if (e.target.classList.contains('programme-item')) return;
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in, .programme-item').forEach(el => observer.observe(el));
+
+    // ── RSVP handler ──
+    function handleRSVP(e) {
+      e.preventDefault();
+      const btn = e.target;
+      btn.textContent = 'Thank You ♡';
+      btn.style.background = 'var(--gold)';
+      btn.style.color = 'var(--ink)';
+      btn.disabled = true;
+    }
+  </script>
+</body>
+</html>
