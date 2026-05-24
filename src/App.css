@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap');
 
 .counter {
   font-size: 16px;
@@ -244,23 +245,25 @@ html, body, #root {
   font-family: 'Dancing Script', cursive;
 }
 
-/* Gallery carousel styles */
-#gallery { display:flex; justify-content:center; padding:56px 20px; }
-.gallery-card { width: 80%; max-width: 1100px; margin: 0 auto; background: var(--ivory); border: 1px solid rgba(194,180,154,.5); padding: 28px 32px; border-radius: 10px; box-shadow: var(--shadow); }
-.gallery-carousel { overflow: hidden; }
-.gallery-track { display:flex; gap:16px; transition: transform 600ms cubic-bezier(.2,.9,.2,1); will-change: transform; align-items: stretch; }
-.gallery-item { flex: 0 0 60%; overflow: hidden; border-radius: 8px; background: #fff; display:flex; align-items:center; justify-content:center; opacity: 0.2; transform: scale(.98); transition: opacity 400ms ease, transform 400ms ease; }
-.gallery-item { aspect-ratio: 16 / 9; min-height: 220px; }
-.gallery-item.active { opacity: 1; transform: scale(1); }
-.gallery-item img { width:100%; height:100%; object-fit:cover; display:block; }
-.gallery-item img { width:100%; height:100%; object-fit:cover; display:block; }
+/* Simple gallery styles */
+.simple-gallery-section { display:flex; justify-content:center; padding:56px 20px; }
+.simple-gallery-card { width: 80%; max-width: 1100px; margin: 0 auto; background: var(--ivory); border: 1px solid rgba(194,180,154,.5); padding: 28px 32px; border-radius: 10px; box-shadow: var(--shadow); }
+.simple-gallery-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+.simple-gallery-item { overflow:hidden; border-radius:8px; background:#fff; aspect-ratio: 4/3; min-height:160px; display:flex; align-items:center; justify-content:center; }
+.simple-gallery-item img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .3s ease; }
+.simple-gallery-item:hover img { transform: scale(1.04); }
 
 @media (max-width: 900px) {
-  .gallery-item { flex: 0 0 48%; }
+  .simple-gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 520px) {
-  .gallery-item { flex: 0 0 90%; }
+  .simple-gallery-grid { grid-template-columns: 1fr; }
 }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+.revealed { opacity: 1; transform: translateY(0); }
+
+/* Gallery removed */
 .video-container .embed {
   position: relative;
   padding-top: 56.25%;
@@ -443,9 +446,6 @@ html, body, #root {
     border-right-color: var(--border);
   }
 }
-
-/* --- Styles imported from public/wedding-invitation.html --- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap');
 
 :root {
   --ivory:   #f9f5ee;

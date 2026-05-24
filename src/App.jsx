@@ -1,9 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+// Gallery images served from `public/gallery`
 import './App.css'
 import Navbar from './components/Navbar'
+
+// Simple gallery: load images from src/assets/gallery using Vite glob import
+const _simpleGallery = import.meta.glob('./assets/gallery/*.{png,jpg,jpeg,webp}', { eager: true })
+const simpleGalleryImages = Object.keys(_simpleGallery).map(k => {
+  const m = _simpleGallery[k]
+  return (m && m.default) || m
+})
+
+console.log('found images:', simpleGalleryImages)
 
 function App() {
   const [count, setCount] = useState(0)
@@ -54,6 +61,17 @@ function App() {
       }
     }
 
+    useEffect(() => {
+    const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('revealed')
+    }),
+    { threshold: 0.1 }
+  )
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+  return () => observer.disconnect()
+}, [])
+
     console.log('RSVP submitted', { ...payload, attend })
     alert('Thanks — your RSVP has been recorded.')
     setRsvpName('')
@@ -67,8 +85,6 @@ function App() {
       {/* Gallery will appear after the story section; Carousel removed */}
 
       <section id="center">
-        <div className="hero">
-        </div>
         <div>
             <h1 className="names">Joko</h1>
           <h2 className="names">&</h2>
@@ -114,22 +130,18 @@ function App() {
           What began as a quiet conversation over coffee in a Florentine bookshop became the adventure of a lifetime. We discovered in each other a kindred spirit, a steady hand, a home.
         </p>
       </section>
-      <section id="gallery" className="gallery-section">
-        <div className="gallery-card">
+      <section id="simple-gallery" className="simple-gallery-section">
+        <div className="simple-gallery-card">
           <p className="section-label">Memories</p>
           <h2 className="section-title">Photo Gallery</h2>
-          <div className="gallery-carousel reveal">
-            <div className="gallery-track">
-              <div className="gallery-item">
-                <img src={heroImg} alt="hero" />
+          <div className="simple-gallery-grid">
+            {simpleGalleryImages.map((src, i) => (
+              <div className="simple-gallery-item" key={i}>
+                <img src={src} alt={`Gallery ${i + 1}`} loading="lazy" />
               </div>
-              <div className="gallery-item">
-                <img src={reactLogo} alt="react" />
-              </div>
-              <div className="gallery-item">
-                <img src={viteLogo} alt="vite" />
-              </div>
-            </div>
+              
+            ))}
+            
           </div>
         </div>
       </section>

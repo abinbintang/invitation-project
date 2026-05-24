@@ -14,7 +14,6 @@ export default function Navbar() {
           <a href="#story">Ipsum</a>
           <a href="#schedule">Dolor</a>
           <a href="#rsvp">Sit</a>
-          <a href="#gallery">Amet</a>
           <a href="#contact">Consectetur</a>
         </nav>
 
